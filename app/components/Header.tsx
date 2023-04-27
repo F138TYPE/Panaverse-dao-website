@@ -90,194 +90,98 @@
 //         </Box>
 //     )
 // }
-// import React from "react";
-// import {
-//   Flex,
-//   Box,
-//   Heading,
-//   IconButton,
-//   useDisclosure,
-//   Stack,
-//   VStack,
-//   HStack,
-//   Link,
-//   Button,
-//   Fade,
-  
-// } from "@chakra-ui/react";
-// import { useState } from "react";
-// import { AnimatePresence, motion } from "framer-motion";
-
-// import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-// import NextLink from "next/link";
-
-// import Image from 'next/image';
-
-
-// const Links = [
-//   { label: "Home", href: "/" },
-//   { label: "About", href: "/about" },
-//   { label: "Syllabus", href: "/Syllabus" },
-// ];
-
-// const NavLink = ({  label , href   }) => (
-//   <NextLink href={href} passHref>
-//     <Link px={2} py={1} rounded={"md"} _hover={{ textDecoration: "none", bg: "gray.200" }}>
-//       {label}
-//     </Link>
-//   </NextLink>
-// );
-
-// const Navbar = () => {
-//   const { isOpen, onOpen, onClose } = useDisclosure();
-//   const [isHovering, setIsHovering] = useState(false);
-
-//   const handleMouseEnter = () => setIsHovering(true);
-//   const handleMouseLeave = () => setIsHovering(false);
-
-  
-//   return (
-   
-//     <Box bg={"gray.100"} px={4}>
-//       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}  onMouseEnter={handleMouseEnter}
-//       onMouseLeave={handleMouseLeave}>
-//         <IconButton
-//           size={"md"}
-//           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-//           aria-label={"Open Menu"}
-//           display={{ md: "none" }}
-//           onClick={isOpen ? onClose : onOpen}
-//         />   <Box>
-          
-//               <Image src={'/panaverse-logo.webp'} width={'100'} height={'100'}></Image>
-//             </Box><HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
-//                 {Links.map((link) => (
-//                   <NavLink key={link.label} {...link} />
-//                 ))}
-//               </HStack><Link href="https://www.piaic.org/">
-//                 <Box display={{ base: "none", md: "flex" }}>
-//                   <Button variant={"solid"} colorScheme={"purple"} size={"sm"}>
-//                     PIAIC
-//                   </Button>
-
-//                 </Box>
-//               </Link>
-//       </Flex>
-
-//       {isOpen ? (
-//         <Box pb={4} display={{ md: "none" }}>
-//           <Stack as={"nav"} spacing={4}>
-//             {Links.map((link) => (
-//               <NavLink key={link.label} {...link} />
-//             ))}
-//           </Stack>
-//         </Box>
-//       ) : null}
-    
-//     </Box>
-    
-    
-//   );
-// };
-
-// export default Navbar;
-
-
-
-
-import { ReactNode, useState } from "react";
+import React from "react";
 import {
   Flex,
   Box,
   Heading,
   IconButton,
-  Button,
-  Text,
-  Stack,
-  Collapse,
-  useColorModeValue,
   useDisclosure,
+  Stack,
+  VStack,
+  HStack,
+  Link,
+  Button,
+  Fade,
+  
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import NextLink from "next/link";
+
+import Image from 'next/image';
+
+ 
+const Links = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Syllabus", href: "/Syllabus" },
+];
+
+const NavLink = ({  label , href   }: Links ) => (
+  <NextLink href={href} passHref>
+    <Link px={2} py={1} rounded={"md"} _hover={{ textDecoration: "none", bg: "gray.200" }}>
+      {label}
+    </Link>
+  </NextLink>
+);
 
 const Navbar = () => {
-  const { isOpen, onToggle } = useDisclosure();
-  const [navbarItems] = useState([
-    { label: "Home", path: "/" },
-    { label: "About", path: "/about" },
-    { label: "Contact", path: "/contact" },
-  ]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isHovering, setIsHovering] = useState(false);
 
+  const handleMouseEnter = () => setIsHovering(true);
+  const handleMouseLeave = () => setIsHovering(false);
+
+  
   return (
-    <Flex
-      bg={useColorModeValue("white", "gray.800")}
-      color={useColorModeValue("gray.600", "white")}
-      minH={"60px"}
-      py={{ base: 2 }}
-      px={{ base: 4 }}
-      borderBottom={1}
-      borderStyle={"solid"}
-      borderColor={useColorModeValue("gray.200", "gray.900")}
-      align={"center"}
-    >
-      <Flex flex={{ base: 1 }} justify={{ base: "start", md: "start" }}>
-        <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
-          Next.js
-        </Heading>
+   
+    <Box bg={"gray.100"} px={4}>
+      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}  onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}>
+        <IconButton
+          size={"md"}
+          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+          aria-label={"Open Menu"}
+          display={{ md: "none" }}
+          onClick={isOpen ? onClose : onOpen}
+        />   <Box>
+          
+              <Image src={'/panaverse-logo.webp'} width={'100'} height={'100'}></Image>
+            </Box><HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
+                {Links.map((link) => (
+                  <NavLink key={link.label} {...link} />
+                ))}
+              </HStack><Link href="https://www.piaic.org/">
+                <Box display={{ base: "none", md: "flex" }}>
+                  <Button variant={"solid"} colorScheme={"purple"} size={"sm"}>
+                    PIAIC
+                  </Button>
+
+                </Box>
+              </Link>
       </Flex>
 
-      <IconButton
-        size={"md"}
-        icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-        aria-label={"Open Menu"}
-        display={{ md: "none" }}
-        onClick={onToggle}
-      />
-
-      <Collapse in={isOpen} animateOpacity>
-        <Box
-          pb={4}
-          display={{ md: "flex" }}
-          justify={{ md: "flex-end" }}
-          alignItems="center"
-        >
-          {navbarItems.map((item, index) => (
-            <NavItem key={index} path={item.path}>
-              {item.label}
-            </NavItem>
-          ))}
+      {isOpen ? (
+        <Box pb={4} display={{ md: "none" }}>
+          <Stack as={"nav"} spacing={4}>
+            {Links.map((link) => (
+              <NavLink key={link.label} {...link} />
+            ))}
+          </Stack>
         </Box>
-      </Collapse>
-    </Flex>
-  );
-};
-interface NavItemProps {
-  path: string;
-  children: ReactNode;
-}
-
-const NavItem = ({ path, children }: NavItemProps) => {
-  return (
-    <Button
-      as={"a"}
-      variant={"ghost"}
-      href={path}
-      px={2}
-      py={1}
-      rounded={"md"}
-      _hover={{
-        textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
-      }}
-      _active={{
-        textDecoration: "none",
-        bg: useColorModeValue("gray.300", "gray.800"),
-      }}
-    >
-      <Text fontSize="md">{children}</Text>
-    </Button>
+      ) : null}
+    
+    </Box>
+    
+    
   );
 };
 
 export default Navbar;
+
+
+
 
