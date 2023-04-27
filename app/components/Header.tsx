@@ -90,7 +90,7 @@
 //         </Box>
 //     )
 // }
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   Flex,
   Box,
@@ -119,8 +119,11 @@ const Links = [
   { label: "About", href: "/about" },
   { label: "Syllabus", href: "/Syllabus" },
 ];
-
-const NavLink = ({  label , href   }: Links ) => (
+interface NavItemProps {
+  label: string;
+  href: string;
+}
+const NavLink = ({  label , href   }: NavItemProps ) => (
   <NextLink href={href} passHref>
     <Link px={2} py={1} rounded={"md"} _hover={{ textDecoration: "none", bg: "gray.200" }}>
       {label}
@@ -149,7 +152,7 @@ const Navbar = () => {
           onClick={isOpen ? onClose : onOpen}
         />   <Box>
           
-              <Image src={'/panaverse-logo.webp'} width={'100'} height={'100'}></Image>
+              <Image src={'/panaverse-logo.webp'} width={'100'} height={'100'} alt="panaverse"></Image>
             </Box><HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
                 {Links.map((link) => (
                   <NavLink key={link.label} {...link} />
